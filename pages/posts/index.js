@@ -1,41 +1,38 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import styles from '../../styles/Home.module.css'
-  
+import styles from "./posts.module.scss";
+import Post from "./components/Post/Post";
+
 export default function Posts({ posts }) {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Pages</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Pages</a>
-        </h1>
-        <ul>
-            {
-                posts.map((post) => {
-                    return (
-                        <li key={post.id}>
-                            <h3>
-                                {/* 
-                                <Link href={`/posts/${product.id}`}>
-                                    {product.name}
-                                </Link> 
-                                
-                                Use for normal navigation between pages and below used for dyamic pages
-                                */}
-                                <Link href={`/posts/[id]`} as={`/posts/${post.id}`}>
-                                    <a>{post.title}</a>
-                                </Link> 
-                            </h3>
-                            <p>Price: {post.body}</p>
-                        </li>
-                    )
-                })
-            }
+      <main>
+        <ul className="row">
+        {
+          posts.map((post) => {
+            return (
+              <li key={post.id} className={"col-md-3 " + styles.post}>
+                  <Post {...post}/>
+                    {/* <h3>
+                        <Link href={`/posts/${product.id}`}>
+                            {product.name}
+                        </Link>
+                        Use for normal navigation between pages and below used for dyamic pages
+                        *
+                        <Link href={`/posts/[id]`} as={`/posts/${post.id}`}>
+                            <a>{post.title}</a>
+                        </Link> 
+                    </h3>
+                    <p>Price: {post.body}</p> */}
+                </li>
+            )
+          })
+        }
         </ul>
       </main>
 
@@ -44,7 +41,7 @@ export default function Posts({ posts }) {
 }
 
 export async function getStaticProps(){
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+    const res = await fetch(`${process.env.API_BASE_URL}${process.env.POST_URL}`)
     const posts = await res.json()
     return { 
       props: {

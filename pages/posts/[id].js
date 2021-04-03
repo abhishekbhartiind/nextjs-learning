@@ -67,7 +67,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ query, params }){
   const { id } = query || params;
 
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts/' + id)
+  const res = await fetch(`${process.env.API_BASE_URL}/posts/${id}`)
   const post = await res.json()
   return { 
     props: {
