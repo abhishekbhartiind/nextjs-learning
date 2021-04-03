@@ -25,6 +25,16 @@ export default function Home() {
               <h3>Store</h3>
             </a>
           </Link>
+          <Link href="/contact-us">
+            <a className={styles.card}>
+              <h3>Contacts Us</h3>
+            </a>
+          </Link>
+          <Link href="/">
+            <a className={styles.card}>
+              <h3>Home</h3>
+            </a>
+          </Link>
         </div>
       </main>
 
