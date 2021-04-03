@@ -1,7 +1,22 @@
 import Head from 'next/head'
-import Link from 'next/link'
+//import Link from 'next/link'
+import dynamic from "next/dynamic";
 import styles from "./posts.module.scss";
 import Post from "./components/Post/Post";
+/**
+ * 
+ * @param {Static Import} and {Dynamic Import} 
+ * @returns 
+ * 
+ * Page/Components imported directly from 'Import keyword'
+ */
+ const Header = dynamic(
+  () => import("./components/Header").then((mod) => mod.PostHeader),
+  {
+    loading: () => <p>Loading Header...</p>,
+    ssr: false,
+  }
+);
 
 export default function Posts({ posts }) {
   return (
@@ -11,7 +26,8 @@ export default function Posts({ posts }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className="container-fluid">
+        <Header/>
         <ul className="row">
         {
           posts.map((post) => {

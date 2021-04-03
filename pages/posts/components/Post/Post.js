@@ -17,14 +17,14 @@ const PostLink = styled.a`
 
 export default function Post({ id, title, body }) {
   return (
-    <>
-      {/* <img src={"/images/posts/" + id + ".jpeg"} className={styles.postImage} /> */}
+    <div className={styles.postBox}>
+      <img src={"/images/1.jpeg"} alt={title} className={styles.postImage} />
       <StyledH3>
         <Link href="/posts/[id]" as={"/posts/" + id}>
           <PostLink>{title}</PostLink>
         </Link>
       </StyledH3>
       <p>{body}</p>
-    </>
+    </div>
   );
 }
