@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Router from 'next/router'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+  //const router = useRouter()
+
   return (
     <div className={styles.container}>
       <Head>
@@ -15,11 +18,11 @@ export default function Home() {
           Welcome to Learning Next
         </h1>
         <div className={styles.grid}>
-          <Link href="/posts">
-            <a className={styles.card}>
+          {/* <Link href="/posts"> */}
+            <a className={styles.card} onClick={() => Router.push('/posts')}>
               <h3>Posts</h3>
             </a>
-          </Link>
+          {/* </Link> */}
           <Link href="/store">
             <a className={styles.card}>
               <h3>Store</h3>
@@ -30,9 +33,9 @@ export default function Home() {
               <h3>Contacts Us</h3>
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/dukaan">
             <a className={styles.card}>
-              <h3>Home</h3>
+              <h3>Dukaan</h3>
             </a>
           </Link>
         </div>
